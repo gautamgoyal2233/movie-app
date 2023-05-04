@@ -12,7 +12,7 @@ import {
   IMG,
 } from "../../assests/styles";
 import { Link } from "react-router-dom";
-import { apidata } from "../../assests/interface";
+import { apidata } from "./interface.config";
 
 const MoviesData: React.FC = () => {
  
