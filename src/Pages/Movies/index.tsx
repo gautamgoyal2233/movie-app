@@ -23,7 +23,7 @@ const MoviesData: React.FC = () => {
 
   const getData = async () => {
     const res = await fetch(
-      `http://www.omdbapi.com/?s=${finals}&apikey=1b41b0c0`
+      `http://www.omdbapi.com/?s=${finals}&apikey=${process.env.REACT_APP_KEY}`
     );
 
     return res.json();
