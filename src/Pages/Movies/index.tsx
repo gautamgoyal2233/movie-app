@@ -15,26 +15,27 @@ import { Link } from "react-router-dom";
 import { apidata } from "../../assests/interface";
 
 const MoviesData: React.FC = () => {
-  const [searchtext, setSearchText] = React.useState<string>("inception");
+ 
   //   let searchstring: string ;
+
+  const [searchmovie, setSearchMovie] = React.useState<string>("inception");
+  const [finals, setFinals] = React.useState<string>("inception");
 
   const getData = async () => {
     const res = await fetch(
-      `http://www.omdbapi.com/?s=${searchtext}&apikey=${process.env.REACT_APP_KEY}`
+      `http://www.omdbapi.com/?s=${finals}&apikey=1b41b0c0`
     );
 
     return res.json();
   };
 
-  const { data, isError, isLoading } = useQuery(
-    ["getMovie", searchtext],
-    getData
-  );
+  const { data, isError, isLoading } = useQuery(`${finals}`, getData);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchText(e.target.value);
+    setSearchMovie(e.target.value);
   };
   const getMovie = () => {
+    setFinals(searchmovie);
     getData();
   };
 
@@ -49,7 +50,7 @@ const MoviesData: React.FC = () => {
           <Searchbox>
             <InputField
               type="search"
-              value={searchtext}
+              value={searchmovie}
               onChange={handleChange}
             />
           </Searchbox>
