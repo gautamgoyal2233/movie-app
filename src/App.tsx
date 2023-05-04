@@ -2,9 +2,9 @@ import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "react-query";
 
-import MoviesData from "./Pages/MoviesData";
+import MoviesData from "./Pages/Movies";
 
-import SingleMovie from "./Pages/SingleMovie";
+import SingleMovie from "./Pages/MoviesList.tsx";
 import Navbar from "./components/Navbar";
 
 function App() {

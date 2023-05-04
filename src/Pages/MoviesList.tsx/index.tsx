@@ -6,19 +6,17 @@ import {
   SingleMovieData,
   Image,
   ListD,
-} from "../assest/styles";
-
+} from "../../assests/styles";
 
 const SingleMovie: React.FC = () => {
   const { id } = useParams<string>();
 
   const getData = async () => {
-    const res = await fetch(`http://www.omdbapi.com/?i=${id}&apikey=1b41b0c0`);
+    const res = await fetch(`http://www.omdbapi.com/?i=${id}&apikey=${process.env.REACT_APP_KEY}`);
     return res.json();
   };
 
   const { data, isError, isLoading } = useQuery("movie", getData);
-  console.log(data);
 
   if (isError) return <h1>Error..</h1>;
   if (isLoading) return <h1>Loading</h1>;

@@ -10,33 +10,35 @@ import {
   Button,
   InputField,
   IMG,
-} from "../assest/styles";
+} from "../../assests/styles";
 import { Link } from "react-router-dom";
-import { apidata } from "../assest/interface";
+import { apidata } from "../../assests/interface";
 
 const MoviesData: React.FC = () => {
-  const [searchmovie, setSearchMovie] = React.useState<String>("inception");
-  const [finals, setFinals] = React.useState<String>("inception");
+  const [searchtext, setSearchText] = React.useState<string>("inception");
+  //   let searchstring: string ;
 
   const getData = async () => {
     const res = await fetch(
-      `http://www.omdbapi.com/?s=${finals}&apikey=1b41b0c0`
+      `http://www.omdbapi.com/?s=${searchtext}&apikey=${process.env.REACT_APP_KEY}`
     );
 
     return res.json();
   };
 
-  const { data, isError, isLoading } = useQuery(`${finals}`, getData);
+  const { data, isError, isLoading } = useQuery(
+    ["getMovie", searchtext],
+    getData
+  );
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchMovie(e.target.value);
+    setSearchText(e.target.value);
   };
   const getMovie = () => {
-    setFinals(searchmovie);
     getData();
   };
 
-  if (isLoading) return <h1>Loading</h1>
+  if (isLoading) return <h1>Loading</h1>;
   if (isError) return <h1>error...</h1>;
 
   return (
@@ -47,7 +49,7 @@ const MoviesData: React.FC = () => {
           <Searchbox>
             <InputField
               type="search"
-              value={searchmovie.toString()}
+              value={searchtext}
               onChange={handleChange}
             />
           </Searchbox>
