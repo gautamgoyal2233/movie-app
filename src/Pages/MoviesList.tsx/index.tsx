@@ -12,7 +12,7 @@ const SingleMovie: React.FC = () => {
   const { id } = useParams<string>();
 
   const getData = async () => {
-    const res = await fetch(`http://www.omdbapi.com/?i=${id}&apikey=${process.env.REACT_APP_KEY}`);
+    const res = await fetch(`https://www.omdbapi.com/?i=${id}&apikey=${process.env.REACT_APP_KEY}`);
     return res.json();
   };
 
